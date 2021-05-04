@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 
 import { SectionsModule } from '../sections/sections.module';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import { SectionsModule } from '../sections/sections.module';
         BrowserModule,
         FormsModule,
         RouterModule,
-        SectionsModule
+        SectionsModule,
+        AgmCoreModule
     ],
     declarations: [ HomeComponent ],
     exports:[ HomeComponent ],

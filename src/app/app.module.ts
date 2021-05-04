@@ -17,7 +17,11 @@ import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import { HttpClientModule } from '@angular/common/http';
-
+import {AgmCoreModule} from '@agm/core';
+import { StepOneComponent } from './step-one/step-one.component';
+import { StepTwoComponent } from './step-two/step-two.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +30,11 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     NavbarComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    StepOneComponent,
+    StepTwoComponent,
+    AboutUsComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HomeModule,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC8_TDuXjcoGYKsb_fV2JUiLvsBVFKsAkI'
+    })
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',
@@ -54,6 +65,9 @@ import { HttpClientModule } from '@angular/common/http';
       ]
     } as SocialAuthServiceConfig,
   }],
+  exports: [
+    FooterComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
