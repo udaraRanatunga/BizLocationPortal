@@ -22,6 +22,9 @@ import { StepOneComponent } from './step-one/step-one.component';
 import { StepTwoComponent } from './step-two/step-two.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CompetitorsComponent } from './modals/competitors/competitors.component';
+import { MailComponent } from './modals/mail/mail.component';
+import { BudgetOptionsComponent } from './modals/budget-options/budget-options.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,10 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     StepOneComponent,
     StepTwoComponent,
     AboutUsComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    CompetitorsComponent,
+    MailComponent,
+    BudgetOptionsComponent
   ],
   imports: [
     BrowserModule,

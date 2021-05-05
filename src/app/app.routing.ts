@@ -29,7 +29,7 @@ const routes: Routes =[
     { path: 'login',          component: LoginComponent },
     { path: 'contact-us',          component: ContactUsComponent },
     { path: 'about-us',          component: AboutUsComponent },
-    { path: 'step-one',          component: StepOneComponent },
+    { path: 'step-one/:colomboZone',          component: StepOneComponent },
     { path: 'step-two',          component: StepTwoComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

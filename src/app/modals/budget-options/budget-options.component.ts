@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-step-two',
-  templateUrl: './step-two.component.html',
-  styleUrls: ['./step-two.component.css']
+  selector: 'app-budget-options',
+  templateUrl: './budget-options.component.html',
+  styleUrls: ['./budget-options.component.css']
 })
-export class StepTwoComponent implements OnInit {
-  location = 'Wellawatta';
-  closeResult: string;
-  constructor( private modalService: NgbModal) { }
+export class BudgetOptionsComponent implements OnInit {
 
-  ngOnInit(): void {
-  }
-  openBudget(content, type, modalDimension) {
+  closeResult: string;
+
+  constructor(private modalService: NgbModal) {}
+
+  open(content, type, modalDimension) {
     if (modalDimension === 'sm' && type === 'modal_mini') {
       this.modalService.open(content, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
         this.closeResult = 'Closed with: $result';
@@ -43,6 +42,8 @@ export class StepTwoComponent implements OnInit {
     } else {
       return  'with: $reason';
     }
+  }
+  ngOnInit() {
   }
 
 }
