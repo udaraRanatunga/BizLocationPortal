@@ -30,20 +30,21 @@
     </div>
     <div class="container">
         <div class="row justify-content-center">
-            <h2 class="display-3">Your search results for <b> {{location}}</b></h2>
+            <h2 class="display-3">Your search results for <b> {{colomboZone}}</b></h2>
         </div>
     </div>
     <br/>
     <div class="container" style="padding-bottom: 2rem">
+
         <div class="row justify-content-center" style="padding-bottom: 1rem">
             <h4>Demographics</h4>
         </div>
-        <div class="row justify-content-center">
-            <h6>Average Rating of Consumers <b>2.3</b>&nbsp;</h6> <h6>Paying Ability of Consumers<b> 1000 for Two</b></h6>
+        <div class="row justify-content-center" *ngIf="zoneData">
+            <h6>Average Rating of Consumers <b>{{zoneData.averageRating}}</b></h6> &nbsp;&nbsp;&nbsp;<h6>Paying Ability of Consumers<b> {{zoneData.averageCost}} for Two</b></h6>
         </div>
         <hr/>
-        <div class="row justify-content-center">
-            <h6>Foodie Index <b>2.3</b>&nbsp;</h6> <h6>Night Life Index<b> 2.3</b></h6>
+        <div class="row justify-content-center" *ngIf="zoneData">
+            <h6>Foodie Index <b>{{zoneData.foodieIndex}}</b>&nbsp;</h6> &nbsp;&nbsp;&nbsp;<h6>Night Life Index<b> {{zoneData.nightLifeIndex}}</b></h6>
         </div>
         <hr/>
         <div class="row justify-content-center">
@@ -53,20 +54,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="row row-grid">
-                    <div class="col-lg-3">
-                        <h6>Sri Lankan</h6>
-                    </div>
-                    <div class="col-lg-2">
-                        <h6>Fast food</h6>
-                    </div>
-                    <div class="col-lg-2">
-                        <h6>Bakery</h6>
-                    </div>
-                    <div class="col-lg-2">
-                        <h6>Finger food</h6>
-                    </div>
-                    <div class="col-lg-3">
-                        <h6>Chinese</h6>
+                    <div class="col-lg-2" style="padding: 5px" *ngFor="let cuisine of cuisines">
+                        <h6>{{cuisine.name}}</h6>
                     </div>
                 </div>
             </div>
@@ -75,27 +64,80 @@
     </div>
     <div class="container" style="padding-bottom: 3rem ">
         <div class="row justify-content-center">
-            <button class="btn btn-primary" type="button" (click)="openBudget()">Places matching the Budget</button>
-            <button class="btn btn-primary" type="button" (click)="openCompetitor()">Competitor Analyzer</button>
-            <button class="btn btn-primary" type="button" (click)="openMail()">Mail a copy</button>
+            <button class="btn btn-primary" type="button" (click)="open(budget,'' , '')">Places matching the Budget</button>
+            <button class="btn btn-primary" type="button" (click)="open(competitor,'' , '')">Competitor Analyzer</button>
+            <button class="btn btn-primary" type="button" (click)="mail()">Mail a copy</button>
         </div>
     </div>
 </main>
-<ng-template #classic let-c="close" let-d="dismiss">
+<ng-template #budget let-c="close" let-d="dismiss">
     <div class="modal-content">
         <div class="modal-header">
-            <h6 class="modal-title" id="modal-title-default">Type your modal title</h6>
+            <h4 class="modal-title" id="modal-title-default">Locations suitable for the budget</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">×</span>
             </button>
         </div>
         <div class="modal-body">
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal" (click)="c('Close click')">Close</button>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="container">
+<!--                        <div class="row">-->
+<!--                            <div class="col">-->
+<!--                                <span><h5>Location</h5></span>-->
+<!--                            </div>-->
+<!--                            <div class="col">-->
+<!--                                <span><h5>Price</h5></span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="row" *ngFor="let budget of budgetColomboZones">
+                            <div class="col">
+                                <span>{{budget.name}}</span>
+                            </div>
+<!--                            <div class="col">-->
+<!--                                <span>Price</span>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </ng-template>
+<ng-template #competitor let-c="close" let-d="dismiss">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="competitor">Competitors in the selected location</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <span><h5>Restaurant Type</h5></span>
+                            </div>
+                            <div class="col">
+                                <span><h5>No. of Outlets</h5></span>
+                            </div>
+                        </div>
+                        <div class="row" *ngFor="let competitor of competitorData">
+                            <div class="col">
+                                <span>{{competitor.restaurantType}}</span>
+                            </div>
+                            <div class="col">
+                                <span>{{competitor.noOfOutlets}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+

@@ -71,8 +71,8 @@ export class NavbarComponent implements OnInit {
         }
 
         this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
-            console.log(socialProvider, socialusers);
-            console.log(socialusers);
+            // console.log(socialProvider, socialusers);
+            // console.log(socialusers);
             localStorage.setItem('socialusers', JSON.stringify(socialusers));
             this.router.navigate([`/home`]);
             // this.Savesresponse(socialusers);

@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {google} from '@google/maps';
-import {SocialloginService} from '../services/sociallogin.service';
 import {DataService} from '../services/data.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {GoogleLoginProvider, SocialAuthService} from 'angularx-social-login';
+import { SocialloginService } from '../services/sociallogin.service';
+import {Socialusers} from '../models/socialusers';
 declare var $: any;
-declare let google: google;
+// declare let google: google;
 export interface Zone {
     value: string;
     name: string;
 }
-
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
         middle: false,
         right: false
     };
+    socialusers = new Socialusers();
     public zones: Zone[] = [
         {value: '1', name: 'Colombo 1- Fort'},
         {value: '2', name: 'Colombo 2- Slave Island'},
@@ -49,7 +51,9 @@ export class HomeComponent implements OnInit {
     private latlng: google.maps.LatLng;
     private colomboZone: any;
 
-    constructor(private service: DataService) {
+    constructor(private service: DataService, private router: Router,
+                public OAuth: SocialAuthService,
+                private socialloginService: SocialloginService) {
         this.getUsers();
         this.lat = 6.92;
         this.lng = 79.86;
@@ -73,11 +77,28 @@ export class HomeComponent implements OnInit {
     }
 
     optionChanged() {
-        this.service.getColomboZoneById(this.selectedOption).subscribe( data =>{
+        this.service.getColomboZoneById(this.selectedOption).subscribe( data => {
             const zoneData: any = data;
             this.lat = zoneData.lat;
             this.lng = zoneData.longitude;
         });
+    }
+
+    login(socialProvider: string) {
+        let socialPlatformProvider;
+        if (socialProvider === 'google') {
+            socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+        }
+
+        this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
+            console.log(socialProvider, socialusers);
+            console.log(socialusers);
+            localStorage.setItem('socialusers', JSON.stringify(socialusers));
+            this.router.navigate([`/step-one`, this.selectedOption]);
+            // this.Savesresponse(socialusers);
+
+        });
+        // [routerLink]="['/step-one',selectedOption]"
     }
 }
 

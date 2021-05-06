@@ -26,7 +26,7 @@
                         <select  id="zone" [(ngModel)]="selectedOption" class="custom-select mb-3" (ngModelChange)="optionChanged()">
                         </select>
                         <span style="padding-left: 1rem">
-                           <button class="btn btn-secondary btn-md" type="button" [routerLink]="['/step-one',selectedOption]">Start Building Your Profile</button>
+                           <button class="btn btn-default btn-md" type="button" [disabled]="selectedOption == null" (click)="login('google')">Start Building Your Profile</button>
                         </span>
                     </div>
                 </div>

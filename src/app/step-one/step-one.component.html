@@ -15,7 +15,8 @@
             </div>
             <!-- SVG separator -->
             <div class="separator separator-bottom separator-skew">
-                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg">
                     <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
                 </svg>
             </div>
@@ -23,331 +24,83 @@
         <!-- 1st Hero Variation -->
     </div>
     <div class="container">
-        <div class="row justify-content-center">
-            <b><h2 class="display-3">Build your business profile</h2></b>
+        <div class="row justify-content-center" style="padding-bottom: 1rem ">
+            <b><h2 class="display-3">Hi {{this.name}}, let's build your business profile</h2></b>
         </div>
     </div>
     <div class="container" style="padding-bottom: 2rem ">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
+        <div>
+            <div class="container">
                 <div *ngIf="colomboZone != ''" class="row row-grid" style="padding-bottom: 1rem ">
                     <h6>Selected Colombo Zone: <b>Colombo {{colomboZone}}</b></h6>
                 </div>
                 <div class="row row-grid">
-                    <h6><b>Select your business type</b></h6>
+                    <h6><b>Select your business type</b> (Select One)</h6>
                 </div>
-                <div class="row row-grid">
-                    <div class="col-lg-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Cafe
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Juice Bar
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
-                                <label class="form-check-label" for="flexRadioDefault3">
-                                    Healthy Eats
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                                <label class="form-check-label" for="flexRadioDefault4">
-                                    Fast Food Shop
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5" checked>
-                                <label class="form-check-label" for="flexRadioDefault5">
-                                    Bakery
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container-fluid">
+                    <div align="center"><mat-spinner *ngIf="!types" [diameter]="40"></mat-spinner></div>
+                    <mat-radio-group
+                            aria-labelledby="example-radio-group-label"
+                            class="example-radio-group"
+                            [(ngModel)]="businessType">
+                        <mat-radio-button class="example-radio-button" *ngFor="let type of types" [value]="type.id">
+                            {{type.description}}
+                        </mat-radio-button>
+                    </mat-radio-group>
                 </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="row row-grid">
-                    <div class="col-lg-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6">
-                            <label class="form-check-label" for="flexRadioDefault6">
-                                Dessert Bar
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault7" checked>
-                                <label class="form-check-label" for="flexRadioDefault7">
-                                    Restaurant and Pub
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault8" checked>
-                                <label class="form-check-label" for="flexRadioDefault8">
-                                    Streetfood Shop
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault9" checked>
-                                <label class="form-check-label" for="flexRadioDefault9">
-                                    Takeaway Shop
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault10" checked>
-                                <label class="form-check-label" for="flexRadioDefault10">
-                                    Other Food Retail Outlet
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </div>
-    <div class="container" style="padding-bottom: 2rem ">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
                 <div class="row row-grid">
-                    <h6><b>Select your target group</b></h6>
+                    <h6><b>Select your target group</b> (Select One)</h6>
+                </div>
+                <div class="container-fluid">
+                    <div align="center"><mat-spinner *ngIf="!targetGroups" [diameter]="40"></mat-spinner></div>
+                    <mat-radio-group
+                            aria-labelledby="example-radio-group-label"
+                            class="example-radio-group"
+                            [(ngModel)]="targetGroupName">
+                        <mat-radio-button class="example-radio-button" *ngFor="let group of targetGroups"
+                                          [value]="group.id">
+                            {{group.targetGroup}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <div class="row row-grid">
+                    <h6><b>Select your budget range for rent</b> (Select One)</h6>
+                </div>
+                <div class="container-fluid">
+                    <div align="center"><mat-spinner *ngIf="!budgetRanges" [diameter]="40"></mat-spinner></div>
+                    <mat-radio-group
+                            aria-labelledby="example-radio-group-label"
+                            class="example-radio-group"
+                            [(ngModel)]="budgetRange">
+                        <mat-radio-button class="example-radio-button" *ngFor="let budget of budgetRanges"
+                                          [value]="budget.id">
+                            {{budget.range}}
+                        </mat-radio-button>
+                    </mat-radio-group>
                 </div>
                 <div class="row row-grid">
-                    <div class="col-lg-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio1">
-                            <label class="form-check-label" for="flexRadio1">
-                                Office Crowd
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio2" checked>
-                                <label class="form-check-label" for="flexRadio2">
-                                    Families
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio3" checked>
-                                <label class="form-check-label" for="flexRadio3">
-                                    Couples
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio4" checked>
-                                <label class="form-check-label" for="flexRadio4">
-                                    Youth
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio5" checked>
-                                <label class="form-check-label" for="flexRadio5">
-                                    Fitness Enthusiasts
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                    <h6><b>Select your business goals</b>(Select Multiple)</h6>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="container" style="padding-bottom: 2rem ">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="row row-grid">
-                    <h6><b>Select your budget range for rent</b></h6>
-                </div>
-                <div class="row row-grid">
-                    <div class="col-lg-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioB" id="Radio1">
-                            <label class="form-check-label" for="Radio1">
-                                below 50000
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioB" id="Radio2" checked>
-                                <label class="form-check-label" for="Radio2">
-                                    50000-150000
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioB" id="Radio3" checked>
-                                <label class="form-check-label" for="Radio3">
-                                    150000-250000
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioB" id="Radio4" checked>
-                                <label class="form-check-label" for="Radio4">
-                                    250000-350000
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioB" id="Radio5" checked>
-                                <label class="form-check-label" for="Radio5">
-                                    Above 350000
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container" >
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="row row-grid">
-                    <h6><b>Select your business goals</b></h6>
-                </div>
-                <div class="row row-grid" style="padding-bottom: 2rem ">
-                    <div class="col-lg-2">
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input class="custom-control-input" id="customCheck1" type="checkbox">
-                            <label class="custom-control-label" for="customCheck1">Budget Price</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input class="custom-control-input" id="customCheck2" type="checkbox">
-                            <label class="custom-control-label" for="customCheck2">Closer to similar businesses</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="customCheck3" type="checkbox">
-                                <label class="custom-control-label" for="customCheck3">Parking</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="customCheck4" type="checkbox">
-                                <label class="custom-control-label" for="customCheck4">Closer to target group</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="customCheck5" type="checkbox">
-                                <label class="custom-control-label" for="customCheck5">Exquisite Area</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row row-grid">
-                    <div class="col-lg-2">
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input class="custom-control-input" id="customCheck6" type="checkbox">
-                            <label class="custom-control-label" for="customCheck6">Closer to main road</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input class="custom-control-input" id="customCheck7" type="checkbox">
-                            <label class="custom-control-label" for="customCheck7">Inside a shopping mall</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="customCheck8" type="checkbox">
-                                <label class="custom-control-label" for="customCheck8">Near by parking</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="customCheck9" type="checkbox">
-                                <label class="custom-control-label" for="customCheck9">Need more kitchen space</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="customCheck10" type="checkbox">
-                                <label class="custom-control-label" for="customCheck10">Closer to an attraction in the city</label>
-                            </div>
-                        </div>
-                    </div>
+                <br>
+                <div class="container-fluid">
+                    <div align="center"><mat-spinner *ngIf="!goals" [diameter]="40"></mat-spinner></div>
+                    <section class="example-section">
+                        <mat-list-item *ngFor="let item of goals">
+                            <mat-checkbox
+                                    [(ngModel)]="item.checked"
+                                    (change)="list_change()"
+                            >{{ item.description }}</mat-checkbox>
+                        </mat-list-item>
+                    </section>
                 </div>
             </div>
         </div>
     </div>
     <div class="container" style="padding-bottom: 3rem ">
         <div class="row justify-content-center">
-            <button class="btn btn-primary" type="button" [routerLink]="['/step-two']">Continue</button>
+            <button class="btn btn-primary" type="button" [disabled]="!businessType || !targetGroupName || !budgetRange" (click)="saveUser()" >Continue</button>
         </div>
     </div>
 </main>

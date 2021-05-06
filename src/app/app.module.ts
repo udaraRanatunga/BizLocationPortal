@@ -24,7 +24,11 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CompetitorsComponent } from './modals/competitors/competitors.component';
 import { MailComponent } from './modals/mail/mail.component';
-import { BudgetOptionsComponent } from './modals/budget-options/budget-options.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,22 +43,26 @@ import { BudgetOptionsComponent } from './modals/budget-options/budget-options.c
     AboutUsComponent,
     ContactUsComponent,
     CompetitorsComponent,
-    MailComponent,
-    BudgetOptionsComponent
+    MailComponent
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    FormsModule,
-    RouterModule,
-    AppRoutingModule,
-    HomeModule,
-    SocialLoginModule,
-    HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC8_TDuXjcoGYKsb_fV2JUiLvsBVFKsAkI'
-    })
-  ],
+    imports: [
+        BrowserModule,
+        NgbModule,
+        FormsModule,
+        RouterModule,
+        AppRoutingModule,
+        HomeModule,
+        SocialLoginModule,
+        HttpClientModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyC8_TDuXjcoGYKsb_fV2JUiLvsBVFKsAkI'
+        }),
+        MatRadioModule,
+        BrowserAnimationsModule,
+        MatCheckboxModule,
+        MatListModule,
+        MatProgressSpinnerModule
+    ],
   providers: [{
     provide: 'SocialAuthServiceConfig',
     useValue: {

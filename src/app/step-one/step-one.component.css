@@ -1,0 +1,15 @@
+.example-radio-group {
+    flex-direction: row;
+    margin: 1rem  1rem;
+
+}
+
+.example-radio-button {
+    margin: 1rem;
+}
+.mat-radio-inner-circle {
+    hidden: false;
+}
+.mat-radio-outer-circle {
+    hidden: false;
+}

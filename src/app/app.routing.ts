@@ -14,7 +14,7 @@ import {AboutUsComponent} from './about-us/about-us.component';
 import {StepOneComponent} from './step-one/step-one.component';
 import {StepTwoComponent} from './step-two/step-two.component';
 
-const routes: Routes =[
+const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent,
@@ -30,7 +30,7 @@ const routes: Routes =[
     { path: 'contact-us',          component: ContactUsComponent },
     { path: 'about-us',          component: AboutUsComponent },
     { path: 'step-one/:colomboZone',          component: StepOneComponent },
-    { path: 'step-two',          component: StepTwoComponent },
+    { path: 'step-two/:colomboZone/:priceRange',          component: StepTwoComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
@@ -38,7 +38,7 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
+    RouterModule.forRoot(routes, {
       useHash: false
     })
   ],
