@@ -47,21 +47,33 @@ export class StepOneComponent implements OnInit {
   getBusinessTypes() {
     this.service.getBusinessType().subscribe(data => {
       this.types = data;
+      this.types = this.types.sort(function(a, b) {
+        return a.id - b.id;
+      });
     });
   }
   getTargetGroups() {
     this.service.getTargetGroups().subscribe(data => {
       this.targetGroups = data;
+      this.targetGroups = this.targetGroups.sort(function(a, b) {
+        return a.id - b.id;
+      });
     });
   }
   getPriceRange() {
     this.service.getPriceRange().subscribe(data => {
       this.budgetRanges = data;
+      this.budgetRanges = this.budgetRanges.sort(function(a, b) {
+        return a.id - b.id;
+      });
     });
   }
   getBusinessGoals() {
     this.service.getBusinessGoals().subscribe(data => {
       this.goals = data;
+      this.goals = this.goals.sort(function(a, b) {
+        return a.id - b.id;
+      });
     });
   }
   ngOnInit(): void {

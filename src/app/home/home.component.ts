@@ -23,23 +23,6 @@ export class HomeComponent implements OnInit {
         right: false
     };
     socialusers = new Socialusers();
-    public zones: Zone[] = [
-        {value: '1', name: 'Colombo 1- Fort'},
-        {value: '2', name: 'Colombo 2- Slave Island'},
-        {value: '3', name: 'Colombo 3- Kollupitiya'},
-        {value: '4', name: 'Colombo 4- Bambalapitiya'},
-        {value: '5', name: 'Colombo 5- Havelock Town'},
-        {value: '6', name: 'Colombo 6- Wellawatta'},
-        {value: '7', name: 'Colombo 7- Cinnamon Gardens'},
-        {value: '8', name: 'Colombo 8- Borella'},
-        {value: '9', name: 'Colombo 9- Dematagoda'},
-        {value: '10', name: 'Colombo 10- Maradana'},
-        {value: '11', name: 'Colombo 11- Pettah'},
-        {value: '12', name: 'Colombo 12- Hulftsdorp'},
-        {value: '13', name: 'Colombo 13- Kotahena'},
-        {value: '14', name: 'Colombo 14- Grandpass'},
-        {value: '15', name: 'Colombo 15- Modara'}
-    ];
     focus;
     focus1;
     // AIzaSyC8_TDuXjcoGYKsb_fV2JUiLvsBVFKsAkI
@@ -65,7 +48,11 @@ export class HomeComponent implements OnInit {
 
     getUsers() {
         this.service.getColomboZone().subscribe(data => {
-            const zones: any = data;
+            let zones: any = data;
+            zones = zones.sort(function(a, b) {
+                return a.id - b.id;
+            });
+
             $('#zone').append('<option selected disabled> Select the Colombo Zone...</option>');
             for (const zone of zones) {
                 // @ts-ignore
