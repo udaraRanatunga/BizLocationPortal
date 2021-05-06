@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from '../services/data.service';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-step-two',
   templateUrl: './step-two.component.html',
@@ -16,8 +16,12 @@ export class StepTwoComponent implements OnInit {
   zoneData: any;
   private cuisines: any;
   private priceRange: any;
-  private budgetColomboZones: Object;
-  private competitorData: Object;
+  private budgetColomboZones: any;
+  private competitorData: any;
+  private body: any;
+  spin = false;
+  private competitor = '';
+  private budgetColomboZone = '';
   // tslint:disable-next-line:max-line-length
   constructor( private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal, private service: DataService) {
     this.activatedRoute.params.subscribe(data => {
@@ -60,15 +64,15 @@ export class StepTwoComponent implements OnInit {
     });
   }
   getColomboZoneByBudget() {
-    this.service.getColomboZoneByBudget(this.priceRange).subscribe( data =>{
+    this.service.getColomboZoneByBudget(this.priceRange).subscribe( data => {
       this.budgetColomboZones = data;
     });
   }
   getCompetitorsByZone() {
-    this.service.getCompetitorsByZone(this.zoneData.id).subscribe(data =>{
+    this.service.getCompetitorsByZone(this.zoneData.id).subscribe(data => {
       this.competitorData = data;
         }
-    )
+    );
   }
   open(content, type, modalDimension) {
     if (modalDimension === 'sm' && type === 'modal_mini') {
@@ -99,6 +103,39 @@ export class StepTwoComponent implements OnInit {
   }
 
   mail() {
-    console.log('send mail');
+    this.spin = true;
+    this.competitorData.forEach(obj => {
+      this.competitor = this.competitor + 'Restaurant Type: ' + obj.restaurantType + ' No. of outlets: ' + obj.noOfOutlets;
+    });
+    this.budgetColomboZones.forEach(obj => {
+      this.budgetColomboZone = this.budgetColomboZone + obj.name;
+    });
+    this.body = {
+      'name': JSON.parse(localStorage.getItem('socialusers')).name,
+      'to': JSON.parse(localStorage.getItem('socialusers')).email,
+      'topic': 'BizLocationFinder Results',
+      // tslint:disable-next-line:max-line-length
+      'message': '<html>' +
+                  '<head></head>' +
+                  '<body>' +
+                  '<ul>' +
+                  '<li>Selected Location:' + this.zoneData.name + '</li>' +
+                  '<li> Foodie Index: ' + this.zoneData.foodieIndex + '</li>' +
+                  '<li> Night Life Index: ' + this.zoneData.nightLifeIndex + '</li>' +
+                  '<li> Average Cost for Two: ' + this.zoneData.averageCost + '</li>' +
+                  '<li> Average Rating:' + this.zoneData.averageRating + '</li>' +
+                  '<li> Competitor Businesses in the area: ' + this.competitor + '</li>' +
+                  '<li> Areas matching the budget: ' + this.budgetColomboZone + '</li>' +
+                  '</ul>' +
+                  '</body>' +
+                  '</html>.'
+    };
+    this.service.sendMail(this.body).subscribe(data => {
+      this.spin = false;
+      Swal.fire('Success!', 'Email Sent', 'success');
+    }, error => {
+      this.spin = false;
+      console.log(error);
+    });
   }
 }

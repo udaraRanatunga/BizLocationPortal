@@ -68,4 +68,10 @@ export class DataService {
     const url = 'http://localhost:8080/api/restaurant/colomboZone/' + zoneId;
     return this.http.get(url, {headers: httpHeaders});
   }
+  sendMail(body) {
+    const httpHeaders = new HttpHeaders();
+    httpHeaders.append('content-type', 'application-json');
+    const url = 'http://152.67.8.253:8090/send';
+    return this.http.post(url, body, {headers: httpHeaders});
+  }
 }

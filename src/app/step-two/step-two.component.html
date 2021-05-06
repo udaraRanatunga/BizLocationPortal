@@ -23,11 +23,11 @@
         </section>
         <!-- 1st Hero Variation -->
     </div>
-    <div class="container" style="padding-bottom: 3rem ">
-        <div class="row justify-content-left">
-            <button class="btn btn-primary" type="button">Back</button>
-        </div>
-    </div>
+<!--    <div class="container" style="padding-bottom: 3rem ">-->
+<!--        <div class="row justify-content-left">-->
+<!--            <button class="btn btn-primary" type="button" [routerLink]="`/step`">Back</button>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="container">
         <div class="row justify-content-center">
             <h2 class="display-3">Your search results for <b> {{colomboZone}}</b></h2>
@@ -39,34 +39,65 @@
         <div class="row justify-content-center" style="padding-bottom: 1rem">
             <h4>Demographics</h4>
         </div>
+        <div align="center">
+            <mat-spinner *ngIf="!zoneData" [diameter]="60"></mat-spinner>
+        </div>
         <div class="row justify-content-center" *ngIf="zoneData">
-            <h6>Average Rating of Consumers <b>{{zoneData.averageRating}}</b></h6> &nbsp;&nbsp;&nbsp;<h6>Paying Ability of Consumers<b> {{zoneData.averageCost}} for Two</b></h6>
-        </div>
-        <hr/>
-        <div class="row justify-content-center" *ngIf="zoneData">
-            <h6>Foodie Index <b>{{zoneData.foodieIndex}}</b>&nbsp;</h6> &nbsp;&nbsp;&nbsp;<h6>Night Life Index<b> {{zoneData.nightLifeIndex}}</b></h6>
-        </div>
-        <hr/>
-        <div class="row justify-content-center">
-            <h4>Top Cuisines</h4>
-        </div>
-        <br>
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="row row-grid">
-                    <div class="col-lg-2" style="padding: 5px" *ngFor="let cuisine of cuisines">
-                        <h6>{{cuisine.name}}</h6>
-                    </div>
+            <h6>Average Rating of Consumers <b>{{zoneData.averageRating}}</b>&nbsp;
+                <div class="badge badge-circle badge-success mr-3">
+                    <i class="ni ni-circle-08 text-primary"></i>
                 </div>
+            </h6>
+        &nbsp;&nbsp;&nbsp;
+        <h6>Paying Ability of Consumers<b> {{zoneData.averageCost}} for Two</b>&nbsp;
+            <div class="badge badge-circle badge-success mr-3">
+                <i class="ni ni-money-coins text-primary"></i>
             </div>
+        </h6>
+    </div>
+    <hr/>
+    <div class="row justify-content-center" *ngIf="zoneData">
+        <h6>Foodie Index <b>{{zoneData.foodieIndex}}</b>&nbsp;
+            <div class="badge badge-circle badge-success mr-3">
+                <i class="ni ni-shop text-primary"></i>&nbsp;
+            </div>
+        </h6>
+        &nbsp;&nbsp;&nbsp;
+        <h6>Night Life Index<b> {{zoneData.nightLifeIndex}}</b>&nbsp;
+            <div class="badge badge-circle badge-success mr-3">
+                <i class="ni ni-headphones text-primary"></i>
+            </div>
+        </h6>
+    </div>
+    <hr/>
+    <div class="row justify-content-center">
+        <h4>Top Cuisines</h4>
+    </div>
+    <br>
+        <div align="center">
+            <mat-spinner *ngIf="!cuisines" [diameter]="60"></mat-spinner>
         </div>
+    <div class="container-fluid">
+        <div align="center">
+            <!--                <div class="row row-grid">-->
+            <div class="col-lg-2 col-md-2 col-sm-6" style="padding: 5px" *ngFor="let cuisine of cuisines">
+                <h6>{{cuisine.name}}</h6>
+            </div>
+            <!--                </div>-->
+        </div>
+    </div>
 
     </div>
     <div class="container" style="padding-bottom: 3rem ">
         <div class="row justify-content-center">
-            <button class="btn btn-primary" type="button" (click)="open(budget,'' , '')">Places matching the Budget</button>
-            <button class="btn btn-primary" type="button" (click)="open(competitor,'' , '')">Competitor Analyzer</button>
+            <button class="btn btn-primary" type="button" (click)="open(budget,'' , '')">Places matching the Budget
+            </button>
+            <button class="btn btn-primary" type="button" (click)="open(competitor,'' , '')">Competitor Analyzer
+            </button>
             <button class="btn btn-primary" type="button" (click)="mail()">Mail a copy</button>
+            <div align="center">
+                <mat-spinner *ngIf="spin" [diameter]="40"></mat-spinner>
+            </div>
         </div>
     </div>
 </main>
@@ -82,21 +113,21 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="container">
-<!--                        <div class="row">-->
-<!--                            <div class="col">-->
-<!--                                <span><h5>Location</h5></span>-->
-<!--                            </div>-->
-<!--                            <div class="col">-->
-<!--                                <span><h5>Price</h5></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        <div class="row">-->
+                        <!--                            <div class="col">-->
+                        <!--                                <span><h5>Location</h5></span>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="col">-->
+                        <!--                                <span><h5>Price</h5></span>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
                         <div class="row" *ngFor="let budget of budgetColomboZones">
                             <div class="col">
                                 <span>{{budget.name}}</span>
                             </div>
-<!--                            <div class="col">-->
-<!--                                <span>Price</span>-->
-<!--                            </div>-->
+                            <!--                            <div class="col">-->
+                            <!--                                <span>Price</span>-->
+                            <!--                            </div>-->
                         </div>
                     </div>
                 </div>

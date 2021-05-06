@@ -25,6 +25,7 @@ export class StepOneComponent implements OnInit {
   checked: any;
   socialuser: any = localStorage.getItem('socialusers');
   name: any;
+  spin = false;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private service: DataService) {
     this.name = JSON.parse(this.socialuser).name;
     this.activatedRoute.params.subscribe(data => {
@@ -71,12 +72,17 @@ export class StepOneComponent implements OnInit {
   }
 
   saveUser() {
+      this.spin = true;
     const body = {
       'email' : JSON.parse(this.socialuser).email,
       'name' : JSON.parse(this.socialuser).name
     };
     this.service.saveUser(this.colomboZone, this.businessType, this.budgetRange, this.targetGroupName, body).subscribe( data => {
       this.router.navigate([`/step-two`, this.colomboZone, this.budgetRange]);
+        this.spin = false;
+    }, error => {
+        console.log(error);
+        this.spin = false;
     });
   }
 }
